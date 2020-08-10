@@ -8,47 +8,50 @@ app.appendChild(container);
 
 
 
-logo.src = 'logo.png';
 
-var request = new XMLHttpRequest();
+const joke_api_url = 'https://official-joke-api.appspot.com/random_joke';
 
-// request.open('GET', 'https://ghibliapi.herokuapp.com/films', true)
-request.open('GET', 'https://ghibliapi.herokuapp.com/films', true);
+async function getJoke(){
+    
+    const response = await fetch(joke_api_url);
+    const data = await response.json();
+    const { setup, punchline } = data;
 
-request.onload = function () {
-    //begin accessing json here
-    var data = JSON.parse(this.response); // json is now parsed in the variable data
-
-    if(request.status >= 200 && request.status < 400){
-        data.forEach((movie) => {
-            //create a div with a card class
-            const card = document.createElement('div');
-            card.setAttribute('class', 'card');
+   document.getElementById('setup-element').textContent = setup;
+   document.getElementById('punch-element').textContent = punchline;
+};
 
 
-            //create an h1 and set the text to content of the film's title
-            const h1 = document.createElement('h1');
-            h1.textContent = movie.title;
 
-            //create a p and set the text to the film's descriptio
-            const p = document.createElement('p')
-            p.textContent = movie.description.substring(0, 300) // limits chars to 300
-            p.textContent = `${movie.description}...` //end with an ellipses
 
-            // append the cards to the container element
-            container.appendChild(card)
+getJoke();
+
+
+
+
+
+
+
+// const request = new XMLHttpRequest();
+
+// // request.open('GET', 'https://ghibliapi.herokuapp.com/films', true)
+// request.open('GET', 'https://official-joke-api.appspot.com/random_joke', true);
+
+// request.onload = function () {
+//     //begin accessing json here
+//     const data = JSON.parse(this.response); // json is now parsed in the variable data
+    
+//     if (request.status >= 200 && request.status < 400) {
+         
+//         for(let i = 0; i < data.length; i++){
+//             console.log(data.textContent)
             
-            // each card contains a h1 and a p
-            card.appendChild(h1)
-            card.appendChild(p)
-        });
-    } else {
-        const errorMessage = document.createElement('marquee')
-        errorMessage.textContent = `not working sorry dude`
-        app.appendChild(errorMessage)
-    }};
+//         }
+        
+//       } else {
+//         console.log('error')
+//       }
     
 
-
-request.send();
-
+// }
+// request.send();
