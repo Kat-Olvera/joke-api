@@ -17,11 +17,8 @@ async function getJoke(){
     
     const { setup, punchline } = data; //selecting the values i want from json
 
-
-   
 //    document.getElementById('setup-element').textContent = setup;  //grabbing the spans that will hold setup and punchline
 //    document.getElementById('punch-element').textContent = punchline;
-
     
     const jokeBoxH1 = document.createElement('h1') //new elements that will appear after you press the button
 
@@ -31,9 +28,10 @@ async function getJoke(){
     const punchlineSpan = document.createElement('span')
     punchlineSpan.setAttribute('class', 'punchline')
 
-    //putting the api data into the elements i just made
-    jokeBoxH1.textContent = data.setup
-    punchlineSpan.textContent = data.punchline
+    
+    const joke = data.setup + ' ' + data.punchline //adding the two values i need into a variable for ease of use
+    jokeBoxH1.textContent = joke //making the h1 element i made the content of the api request
+   
 
     //appending those elements to the html
     document.body.appendChild(jokeBoxH1)
