@@ -12,25 +12,27 @@
 const joke_api_url = 'https://official-joke-api.appspot.com/random_joke';
 
 async function getJoke(){
-    // const app = document.getElementById('root')
-    // getting and parsing the data
-    const response = await fetch(joke_api_url);
+    const response = await fetch(joke_api_url); // getting and parsing the data
     const data = await response.json();
-    const { setup, punchline } = data;
-    const jokeBoxH1 = document.createElement('h1')
+    
+    const { setup, punchline } = data; //selecting the values i want from json
+
+
+   
+//    document.getElementById('setup-element').textContent = setup;  //grabbing the spans that will hold setup and punchline
+//    document.getElementById('punch-element').textContent = punchline;
+
+    
+    const jokeBoxH1 = document.createElement('h1') //new elements that will appear after you press the button
+
     const setupSpan = document.createElement('span')
-    const punchlineSpan = document.createElement('span')
-
-    //grabbing the spans that will hold setup and punchline
-   document.getElementById('setup-element').textContent = setup;
-   document.getElementById('punch-element').textContent = punchline;
-
-    //creating and setting classes to new elements that will appear after you press the button
     setupSpan.setAttribute('class', 'setup')
+
+    const punchlineSpan = document.createElement('span')
     punchlineSpan.setAttribute('class', 'punchline')
 
     //putting the api data into the elements i just made
-    setupSpan.textContent = data.setup
+    jokeBoxH1.textContent = data.setup
     punchlineSpan.textContent = data.punchline
 
     //appending those elements to the html
