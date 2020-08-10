@@ -8,14 +8,12 @@
 
 
 
-
+const randomJokeElement = document.querySelector('.random-joke')
 const joke_api_url = 'https://official-joke-api.appspot.com/random_joke';
 
 async function getJoke(){
     const response = await fetch(joke_api_url); // getting and parsing the data
     const data = await response.json();
-    
-    const { setup, punchline } = data; //selecting the values i want from json
 
 //    document.getElementById('setup-element').textContent = setup;  //grabbing the spans that will hold setup and punchline
 //    document.getElementById('punch-element').textContent = punchline;
@@ -35,14 +33,12 @@ async function getJoke(){
 
     //appending those elements to the html
     document.body.appendChild(jokeBoxH1)
-
+    jokeBoxH1.appendChild(randomJokeElement)
+   
 
 };
 
-document.querySelector('#jokebutton').addEventListener('click', function(){
-    getJoke();
-})
-
+document.querySelector('#jokebutton').addEventListener('click',getJoke)
 
 
 
