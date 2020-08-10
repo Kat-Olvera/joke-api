@@ -1,1 +1,1 @@
-# ghibli-repo
+# joke-api
