@@ -17,19 +17,16 @@ async function getJoke(){
     const response = await fetch(joke_api_url);
     const data = await response.json();
     const { setup, punchline } = data;
-
+    const jokeBoxH1 = document.createElement('h1')
+    const setupSpan = document.createElement('span')
+    const punchlineSpan = document.createElement('span')
 
     //grabbing the spans that will hold setup and punchline
-//    document.getElementById('setup-element').textContent = setup;
-//    document.getElementById('punch-element').textContent = punchline;
+   document.getElementById('setup-element').textContent = setup;
+   document.getElementById('punch-element').textContent = punchline;
 
     //creating and setting classes to new elements that will appear after you press the button
-    const jokeBoxH1 = document.createElement('h1')
-
-    const setupSpan = document.createElement('span')
     setupSpan.setAttribute('class', 'setup')
-
-    const punchlineSpan = document.createElement('span')
     punchlineSpan.setAttribute('class', 'punchline')
 
     //putting the api data into the elements i just made
@@ -38,12 +35,13 @@ async function getJoke(){
 
     //appending those elements to the html
     document.body.appendChild(jokeBoxH1)
-    document.body.jokeBoxH1.appendChild(setupSpan)
 
 
 };
 
-document.querySelector('#jokebutton').addEventListener('click', getJoke())
+document.querySelector('#jokebutton').addEventListener('click', function(){
+    getJoke();
+})
 
 
 
